@@ -1,18 +1,16 @@
 var mytracking = {
-    createEvent: function(title, location, notes, startDate, endDate, successCallback, errorCallback) {
+    createGPSTrakingListener: function (RemoteServer, PersonnelId, Interval, successCallback, errorCallback) {
         cordova.exec(
             successCallback, // success callback function
             errorCallback, // error callback function
-            'MyTracking', // mapped to our native Java class called "CalendarPlugin"
-            'addCalendarEntry', // with this action name
+            'GPSTracking', // mapped to our native Java class called "Calendar"
+            'StartListening', // with this action name
             [{                  // and this array of custom arguments to create our entry
-                "title": title,
-                "description": notes,
-                "eventLocation": location,
-                "startTimeMillis": startDate.getTime(),
-                "endTimeMillis": endDate.getTime()
+                "RemoteServer" : RemoteServer,
+                "PersonnelId" : PersonnelId,
+                "Interval": Interval
             }]
-        ); 
+        );
     }
 }
 module.exports = mytracking;
